@@ -1,0 +1,59 @@
+{
+    "format": "CHIP-0007",
+    "name": "ᛋ 304 Å",
+    "description": "☼",
+    "minting_tool": "billybash",
+    "sensitive_content": "false",
+    "attributes":
+    [
+        {
+            "trait_type": "Observed",
+            "value": "28-30 June, 2022"
+        },
+        {
+            "trait_type": "Channel AIA",
+            "value": "304 Å"   
+        },
+        {
+            "trait_type": "Region of the solar atmosphere",
+            "value": "Chromosphere, the transition region"   
+        },
+        {
+            "trait_type": "Ions",
+            "value": "He  II"
+        },
+        {
+            "trait_type": "T°K, lg(T)",
+            "value": "4.7"
+        }
+
+    ],
+    "collection":
+    {
+        "name": "ᛋ",
+        "id": "fc2548ea-a272-426c-a951-c0a78e980151",
+        "attributes":
+        [
+            {
+                "type": "description",
+                "value": "God-blithe bedfellow of Glen steps to her divine sanctuary with brightness; then descends the good light of grey-clad moon."
+            },
+            {
+                "type": "icon",
+                "value": "https://github.com/wallentx/billycoins/raw/main/sol/collection/icon.png"
+            },
+            {
+                "type": "banner",
+                "value": "https://github.com/wallentx/billycoins/raw/main/sol/collection/banner.png"
+            },
+            {
+                "type": "twitter",
+                "value": "https://twitter.com/wallentx"
+            },
+            {
+                "type": "website",
+                "value": "https://www.onlybillys.com/"
+            }
+        ]
+    }
+}
