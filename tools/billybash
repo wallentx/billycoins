@@ -1,0 +1,174 @@
+#!/usr/bin/env bash
+# set -x
+
+DONE=$(mktemp /tmp/doneXXXXXXXX)
+
+optprompt() {
+    tput civis
+    clear
+    echo -e "$HEADER\n"
+    cat "$DONE"
+    echo ""
+    echo -n "    Press any key to add another attribute, or 'n' to move on."
+    while read -r -n1 key; do
+        if [[ $key == $'n' ]]; then
+            clear
+            NEXT=1
+            break
+        fi
+        clear
+        NEXT=0
+        break
+    done
+    tput cnorm
+}
+
+getinput() {
+    NEXT=0
+    until [ "$NEXT" -eq 1 ]; do
+        echo -e "$HEADER\n\n"
+        cat "$DONE"
+        IFS= read -r -p "$ITEM " VALUE
+        if [[ -n $VALUE ]]; then
+            echo "$ITEM $VALUE" >>"$DONE"
+            if [[ -n $ITEM_VALUE ]]; then
+                IFS= read -r -p "$ITEM_VALUE " ATTRIB_VALUE
+                echo "$ITEM_VALUE $ATTRIB_VALUE" >>"$DONE"
+            fi
+        else
+            clear
+            NEXT=1
+            break
+        fi
+        optprompt
+    done
+}
+
+clear
+echo -e "Let's make some NFT metadata!"
+echo "---" >"$DONE"
+echo "format: CHIP-0007" >>"$DONE"
+
+echo -e "Give your NFT a good name!\n"
+cat "$DONE"
+IFS= read -r -p "name: " NFT_NAME
+echo "name: $NFT_NAME" >>"$DONE"
+clear
+
+echo -e "Description for your NFT...\n\n"
+cat "$DONE"
+IFS= read -r -p "description: " NFT_DESC
+echo "description: $NFT_DESC" >>"$DONE"
+
+echo "minting_tool: billybash" >>"$DONE"
+
+clear
+echo "Pop Quiz! <t/f>:"
+echo -e "This NFT contains sensitive content.\n"
+cat "$DONE"
+echo -n "sensitive_content: "
+tput sc
+text="Please press 't' or 'f'"
+row=10
+col=$(( ($(tput cols) - ${#text}) / 2))
+tput cup $row $col
+echo "$text"
+tput rc
+while read -r -n1 key; do
+    if [[ $key == [tT] ]]; then
+        SENSITIVE=true
+        break
+    elif [[ $key == [fF] ]]; then
+        SENSITIVE=false
+        break
+    elif [[ $key != [tTfF] ]]; then
+        echo -n -e "\b \b"
+    fi
+done
+echo "sensitive_content: $SENSITIVE" >>"$DONE"
+clear
+
+echo "attributes:" >>"$DONE"
+HEADER="Now give your NFT some attributes."
+ITEM="  - trait_type:"
+ITEM_VALUE="    value:"
+getinput
+
+clear
+cat "$DONE"
+
+echo -e "\nIs this NFT part of a collection?\n\n"
+select yn in "Yes" "No"; do
+    case $yn in
+    Yes )
+        COLLECTION=true
+        ;;
+    No )
+        COLLECTION=false
+        ;;
+    esac
+done
+
+if [[ $COLLECTION == true ]]; then
+    echo "collection: " >>"$DONE"
+    clear
+    echo -e "What is the collection name?\n\n"
+    cat "$DONE"
+    IFS= read -r -p "  name: " COL_NAME
+    echo "  name: $COL_NAME" >>"$DONE"
+
+    clear
+    echo -e "What is the collection ID?\n\n"
+    cat "$DONE"
+    IFS= read -r -p "  id: " COL_ID
+    echo "  id: $COL_NAME" >>"$DONE"
+
+    clear
+    echo "  attributes:" >>"$DONE"
+    echo "    - type: description" >>"$DONE"
+    echo -e "Enter the group description.\n\n"
+    cat "$DONE"
+    IFS= read -r -p "      value: " COL_DESC
+    echo "      value: $COL_DESC" >>"$DONE"
+
+  attributes:
+    - type: description
+      value: \$COL_DESCRIPTION
+    - type: icon
+      value: \$COL_ICON
+    - type: banner
+      value: \$COL_BANNER
+    - type: twitter
+      value: \@wallentx
+    - type: website
+      value: https://www.onlybillys.com
+
+#echo -e "$HEADER\n"
+#cat "$DONE"
+#IFS= read -r -p "Status: " line
+#echo "$line" >>"$DONE"
+
+
+if yq -o j "$DONE" | grep -xq '  "attributes": null'; then
+    sed -i '/attributes:/d' "$DONE"
+fi
+
+clear
+cat "$DONE"
+META_OUT=$(cat "$DONE")
+
+echo -e "\nSend meta to GitHub?"
+select yn in "Yes" "No"; do
+    case $yn in
+    Yes)
+        echo "$META_OUT" | yq -o j
+        exit
+        ;;
+    No)
+        echo "$META_OUT" | yq -o j
+        exit
+        ;;
+    esac
+done
+
+rm "$DONE"
