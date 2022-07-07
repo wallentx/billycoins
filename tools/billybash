@@ -70,7 +70,7 @@ echo -n "sensitive_content: "
 tput sc
 text="Please press 't' or 'f'"
 row=10
-col=$(( ($(tput cols) - ${#text}) / 2))
+col=$((($(tput cols) - ${#text}) / 2))
 tput cup $row $col
 echo "$text"
 tput rc
@@ -100,10 +100,10 @@ cat "$DONE"
 echo -e "\nIs this NFT part of a collection?\n\n"
 select yn in "Yes" "No"; do
     case $yn in
-    Yes )
+    Yes)
         COLLECTION=true
         ;;
-    No )
+    No)
         COLLECTION=false
         ;;
     esac
@@ -131,23 +131,39 @@ if [[ $COLLECTION == true ]]; then
     IFS= read -r -p "      value: " COL_DESC
     echo "      value: $COL_DESC" >>"$DONE"
 
-  attributes:
-    - type: description
-      value: \$COL_DESCRIPTION
-    - type: icon
-      value: \$COL_ICON
-    - type: banner
-      value: \$COL_BANNER
-    - type: twitter
-      value: \@wallentx
-    - type: website
-      value: https://www.onlybillys.com
+    clear
+    echo "    - type: icon" >>"$DONE"
+    echo -e "Enter the URL for the collection icon.\n\n"
+    cat "$DONE"
+    IFS= read -r -p "      value: " COL_ICON
+    echo "      value: $COL_ICON" >>"$DONE"
+
+    clear
+    echo "    - type: banner" >>"$DONE"
+    echo -e "Enter the URL for the collection banner.\n\n"
+    cat "$DONE"
+    IFS= read -r -p "      value: " COL_BANNER
+    echo "      value: $COL_DESC" >>"$DONE"
+
+    clear
+    echo "    - type: twitter" >>"$DONE"
+    echo -e "Enter the Twitter handle for the collection.\n\n"
+    cat "$DONE"
+    IFS= read -r -p "      value: " COL_TWITTER
+    echo "      value: $COL_TWITTER" >>"$DONE"
+
+    clear
+    echo "    - type: website" >>"$DONE"
+    echo -e "Enter the URL for the collection website.\n\n"
+    cat "$DONE"
+    IFS= read -r -p "      value: " COL_WEB
+    echo "      value: $COL_WEB" >>"$DONE"
+fi
 
 #echo -e "$HEADER\n"
 #cat "$DONE"
 #IFS= read -r -p "Status: " line
 #echo "$line" >>"$DONE"
-
 
 if yq -o j "$DONE" | grep -xq '  "attributes": null'; then
     sed -i '/attributes:/d' "$DONE"
