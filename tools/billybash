@@ -102,9 +102,11 @@ select yn in "Yes" "No"; do
     case $yn in
     Yes)
         COLLECTION=true
+        break
         ;;
     No)
         COLLECTION=false
+        break
         ;;
     esac
 done
@@ -121,7 +123,7 @@ if [[ $COLLECTION == true ]]; then
     echo -e "What is the collection ID?\n\n"
     cat "$DONE"
     IFS= read -r -p "  id: " COL_ID
-    echo "  id: $COL_NAME" >>"$DONE"
+    echo "  id: $COL_ID" >>"$DONE"
 
     clear
     echo "  attributes:" >>"$DONE"
@@ -150,7 +152,7 @@ if [[ $COLLECTION == true ]]; then
     echo -e "Enter the Twitter handle for the collection.\n\n"
     cat "$DONE"
     IFS= read -r -p "      value: " COL_TWITTER
-    echo "      value: $COL_TWITTER" >>"$DONE"
+    echo "      value: '$COL_TWITTER'" >>"$DONE"
 
     clear
     echo "    - type: website" >>"$DONE"
