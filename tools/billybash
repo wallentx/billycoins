@@ -162,11 +162,6 @@ if [[ $COLLECTION == true ]]; then
     echo "      value: $COL_WEB" >>"$DONE"
 fi
 
-#echo -e "$HEADER\n"
-#cat "$DONE"
-#IFS= read -r -p "Status: " line
-#echo "$line" >>"$DONE"
-
 if yq -o j "$DONE" | grep -xq '  "attributes": null'; then
     sed -i '/attributes:/d' "$DONE"
 fi
