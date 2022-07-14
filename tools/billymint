@@ -1,0 +1,41 @@
+#!/usr/bin/env bash
+
+
+FINGERPRINT="361204527"
+WALLETID="3"
+FEE="0.0000001"
+ROYALTYADD="txch13selvhrgj707ncjmwu2e4wlm5akcm67qkqpsvmgamxasrt638rrqag8dda"
+PERCENT="6666"
+
+while getopts "fimrpuhd" OPTION; do
+  case $OPTION in
+      f)
+          FINGERPRINT=${OPTARG}
+          ;;
+      i)
+          WALLETID=${OPTARG}
+          ;;
+      m)
+          FEE=${OPTARG}
+          ;;
+      r)
+          ROYALTYADD=${OPTARG}
+          ;;
+      p)
+          PERCENT=${OPTARG}
+          ;;
+      u)
+          URL=${OPTARG}
+          HASH=$(curl -Ls $URL | sha256sum | choose 0)
+          ;;
+      d)
+          METADATA=${OPTARG}
+          METAHASH=$(curl -Ls $METADATA | sha256sum | choose 0)
+          ;;
+      *)
+          echo "Unknow comandline switch: $OPTION"
+  esac
+done
+
+
+echo "chia wallet nft mint -f $FINGERPRINT -i $WALLETID -m $FEE -ra $ROYALTYADD -rp $PERCENT -u $URL -nh $HASH -mu $METADATA -mh $METAHASH"
