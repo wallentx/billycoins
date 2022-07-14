@@ -1,0 +1,25 @@
+---
+format: CHIP-0007
+name: Bum Rumford
+description: hes has 10,0 billycoins at hsi pockets WOW! :O
+minting_tool: billybash
+sensitive_content: false
+attributes:
+  - trait_type: richiness
+    value: okay rich
+  - trait_type: Willines
+    value: fake
+collection:
+  name: 𝖗𝖎𝖈𝖍𝖇𝖔𝖎𝖘
+  id: 9f102fce-091c-4ee3-808c-df3fe939e288
+  attributes:
+    - type: description
+      value: rich boi or not rich boi CAN U SPOT?
+    - type: icon
+      value: https://img.starstorm.io/nft/richbois/icon.gif
+    - type: banner
+      value: https://img.starstorm.io/nft/richbois/banner.gif
+    - type: twitter
+      value: @wallentx
+    - type: website
+      value: https://www.onlybillys.com/
