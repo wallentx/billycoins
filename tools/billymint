@@ -7,7 +7,7 @@ FEE="0.0000001"
 ROYALTYADD="txch13selvhrgj707ncjmwu2e4wlm5akcm67qkqpsvmgamxasrt638rrqag8dda"
 PERCENT="6666"
 
-while getopts "fimrpuhd" OPTION; do
+while getopts ":f:i:m:r:p:u:h:d:" OPTION; do
   case $OPTION in
       f)
           FINGERPRINT=${OPTARG}

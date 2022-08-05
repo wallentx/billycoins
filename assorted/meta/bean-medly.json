@@ -1,0 +1,17 @@
+{
+  "format": "CHIP-0007",
+  "name": "Discount on BEAN MEDLY",
+  "description": "Redeem at gas station",
+  "minting_tool": "billybash",
+  "sensitive_content": false,
+  "attributes": [
+    {
+      "trait_type": "discount",
+      "value": "¢50 ʷᶦᵗʰ ᵖᵘʳᶜʰᵃˢᵉ ᵒᶠ ⁴ ᶜᵃⁿˢ"
+    },
+    {
+      "trait_type": "expiration date",
+      "value": "expired"
+    }
+  ]
+}
