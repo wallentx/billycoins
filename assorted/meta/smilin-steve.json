@@ -1,0 +1,13 @@
+{
+  "format": "CHIP-0007",
+  "name": "Smilin Steve",
+  "description": "FROM THE BAPMAN UNIVERSE",
+  "minting_tool": "billybash",
+  "sensitive_content": false,
+  "attributes": [
+    {
+      "trait_type": "so serious",
+      "value": "about his moustache"
+    }
+  ]
+}
