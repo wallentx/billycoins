@@ -4,7 +4,7 @@
 FINGERPRINT="361204527"
 WALLETID="3"
 FEE="0.0000001"
-ROYALTYADD="txch13selvhrgj707ncjmwu2e4wlm5akcm67qkqpsvmgamxasrt638rrqag8dda"
+ROYALTYADD="xch1pssg546qwu3cfkjmh6uy95mrnerjsgquf4885q89vnjle6adpgkqgtdyha"
 PERCENT="6666"
 
 while getopts ":f:i:m:r:p:u:h:d:" OPTION; do
