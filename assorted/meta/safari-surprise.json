@@ -1,0 +1,17 @@
+{
+  "format": "CHIP-0007",
+  "name": "⚠️DON\"T NOT VIEW THITS IN SAFARI!",
+  "description": "(unless u wamt a birthday wink 😉)",
+  "minting_tool": "billybash",
+  "sensitive_content": false,
+  "attributes": [
+    {
+      "trait_type": "drakeno",
+      "value": "Chrome"
+    },
+    {
+      "trait_type": "drakeyes",
+      "value": "Safari"
+    }
+  ]
+}
