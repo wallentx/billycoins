@@ -1,0 +1,21 @@
+{
+  "format": "CHIP-0007",
+  "name": "🎼🎶🎵🎤🎸🧑‍🎤",
+  "description": "I D?LDED OFFLINE FROM MAPSTER HEHE",
+  "minting_tool": "billybash",
+  "sensitive_content": false,
+  "attributes": [
+    {
+      "trait_type": "Key",
+      "value": "C Major"
+    },
+    {
+      "trait_type": "BPM",
+      "value": 146
+    },
+    {
+      "trait_type": "Duration",
+      "value": "6:42"
+    }
+  ]
+}
